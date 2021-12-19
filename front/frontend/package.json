@@ -3,6 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.8.0",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@material-ui/styles": "^4.11.4",
+    "@mui/icons-material": "^5.0.5",
+    "@mui/lab": "^5.0.0-alpha.54",
+    "@mui/material": "^5.0.6",
+    "@mui/styled-engine-sc": "^5.0.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -10,9 +21,22 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "axios": "^0.24.0",
+    "connected-react-router": "6.0.0",
+    "date-fns": "^2.25.0",
+    "history": "4.10.1",
     "react": "^17.0.2",
+    "react-calendar": "^3.5.0",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router": "5.2.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
+    "redux-actions": "^2.6.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.0",
+    "reselect": "^4.1.0",
+    "styled-components": "^5.3.3",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -39,5 +63,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-calendar": "^3.4.3",
+    "@types/react-router": "^5.1.17",
+    "chart.js": "^3.6.0",
+    "react-chartjs-2": "^3.3.0"
   }
 }

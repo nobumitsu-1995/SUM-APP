@@ -1,6 +1,0 @@
-[submodule "api"]
-    path = api
-    url = https://github.com/nobumitsu-1995/KakeiboApp_v2_api
-[submodule "front"]
-    path = front
-    url = https://github.com/nobumitsu-1995/KakeiboApp_v2_front

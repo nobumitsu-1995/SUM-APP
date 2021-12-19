@@ -34,7 +34,6 @@ services:
             dockerfile: Dockerfile
         volumes:
             - ./front:/usr/src/app
-            # - /usr/src/app/node_modules
         command: sh -c "cd frontend && yarn start"
         ports:
             - "8000:3000"
