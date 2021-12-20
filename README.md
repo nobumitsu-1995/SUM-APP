@@ -18,11 +18,8 @@
 2. 貯金目標を立て、それを達成できるように手助けをする。
 
 お金を「加算する、合計する」という意味合いを持つ
-*「SUM UP」*と
-*「Application」*を掛け合わせ
-*「SUM APP」*と名づけました。<br>
-ロゴは貯金を積み重ねることで、右肩上がりになっていく*折れ線グラフ*と
-*「Thumbs up」*を連想させるデザインとなっています。<br>
+「SUM UP」と「Application」を掛け合わせ「SUM APP」と名づけました。<br>
+ロゴは貯金を積み重ねることで、右肩上がりになっていく折れ線グラフと「Thumbs up」を連想させるデザインとなっています。<br>
 
 <img width="400" alt="Logo" src="./front/frontend/src/image/logo_transparent.png">
 
@@ -33,13 +30,15 @@
 - 貯金目標達成を手助けする機能(総資産額の管理、月予算の設定、月残り予算)
 
 ### ○開発の背景
-欲しいものを買うために、将来のために、**しっかりと貯金したい！**と思ったのが開発のきっかけです。<br>
+欲しいものを買うために、将来のために、しっかりと貯金したい！と思ったのが開発のきっかけです。<br>
 しかし、貯金しようと思っても
+
 - 「何に使ったかわからないけどお金が減っていく！」
 - 「月々いくら貯金すればいいんだ？」
 - 「モチベーションが保てない！」
+
 <br>といった問題に直面しました。<br>
-そこで解決方法として以下の３点を考えました。<br>
+そこで解決方法として以下の３点を考えました。
 
 - 家計簿をつける。
 - 収支のカテゴリ別の内訳を分析して無駄遣いしている部分を探す。
@@ -53,6 +52,7 @@ git clone git@github.com:nobumitsu-1995/SUM-APP.git
 docker-compose build
 docker-compose up
 ```
+
 ## 使用技術
 - フロントエンド(React + TypeScript + Redux)
     - redux-thunk：　Reduxで非同期処理を行えるようにするためのミドルウェア。
@@ -69,6 +69,8 @@ docker-compose up
     - Rspec：　Railsの代表的なテストツールの一つ。単体テスト、統合テストを実行するために使用しました。
     - Factory Bot：　テストのサンプルデータを簡単に作成することができるgem。
 <br>
+<img width="1000" alt="ER図" src="./front/frontend/src/image/ER.png">
+<br>
 
 - インフラ(AWS, NGINX, Docker)
     - Route53：　サイトを独自ドメインと紐づけるために使用しました。
@@ -82,6 +84,8 @@ docker-compose up
     - Lambda： 送られてきたデータを元にメールを作成するために使用しました。
     - SES： Lambdaで作成したメールを管理者に送信するために使用しました。
 <br>
+<img width="1000" alt="infra" src="./front/frontend/src/image/infra.png">
+<br>
 
 - 開発環境(Docker, docker-compose)[[開発環境雛形]](https://github.com/nobumitsu-1995/rails-nginx-react-docker)
     - db: postgreSQL
@@ -89,22 +93,29 @@ docker-compose up
     - front: React
     - web: NGINX
 
-### ○データベース設計
-<img width="1000" alt="ER図" src="./front/frontend/src/image/ER.png">
-
-### ○インフラ設計
-<img width="1000" alt="infra" src="./front/frontend/src/image/infra.png">
-
 ## 機能一覧
+
 - 収支を登録する機能(単体登録、一括登録)
 - 収支情報を参照、編集、削除する機能
 - カスタム収支カテゴリ、カスタム支払方法を作成、参照、編集、削除する機能
 - 日別収支金額(棒グラフ)、月々の収入,消費カテゴリ内訳(円グラフ)、月予算残高の推移(折れ線グラフ)を確認する機能
 - 貯金目標達成を手助けする機能(総資産額の管理、月予算の設定、月残り予算)
 
+1. 収支の単体登録機能
+![create_item](https://user-images.githubusercontent.com/70850598/146704337-a5447a52-4352-497f-81d0-216484f17c9b.gif)
+2. 収支の一括登録機能
+![create_many_item](https://user-images.githubusercontent.com/70850598/146704633-64ff0450-81bb-4622-9caf-1aaac302ce03.gif)
+3. 収支情報の参照、編集、削除
+![crud_item](https://user-images.githubusercontent.com/70850598/146704724-279ecb72-c1c2-44d6-8a4f-4298a27e02cd.gif)
+4. カスタム収支カテゴリの作成、参照、編集、削除
+![crud_custum](https://user-images.githubusercontent.com/70850598/146704841-7c5f75a1-65fe-4f4c-96b5-d0dc7963fd71.gif)
+5. 収支情報の閲覧
+![show_info](https://user-images.githubusercontent.com/70850598/146704939-9be54a9b-8c5d-4776-920e-8fbb82f97194.gif)
+
 ## 今後の実装したい機能、反省点
 ### ○今後実装したい機能
 本アプリケーションは基本的な機能はすでに使用できますが、まだ不完全で改善点が多々残っております。 今後のアップデートで以下の機能を実装していきたいと考えています。
+
 1. 固定収支情報を登録することで毎月の固定収支を自動で登録できるようにする。
 2. 検索機能を追加し、収支情報を検索できるようにする。
 3. CI/CDサービスの導入
@@ -122,3 +133,6 @@ Railsに「Elastic Search」を導入し、収支情報の検索機能を作成�
 <br>
 
 ### ○反省点
+ディレクトリ構成はatomicデザインの構成でよかったか？
+githubの使い方
+UI
