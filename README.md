@@ -46,13 +46,6 @@
 
 <br>これらを視覚化することで、貯金のモチベーションを保つこともできるのではないかと考え、このアプリケーションを作成することにしました。
 
-### ○ローカル環境構築方法
-```ruby:console
-git clone git@github.com:nobumitsu-1995/SUM-APP.git
-docker-compose build
-docker-compose up
-```
-
 ## 使用技術
 - フロントエンド(React + TypeScript + Redux)
     - redux-thunk：　Reduxで非同期処理を行えるようにするためのミドルウェア。
