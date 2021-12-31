@@ -3,6 +3,7 @@ import CategoriesInfo from "../templates/CategoryInfo"
 import MoneyInfo from "../templates/MoneyInfo"
 import PaymentMEthodsInfo from "../templates/PaymentMethodsInfo"
 import UserInfo from "../templates/UserInfo"
+import FixedItems from "../templates/FixedItems"
 
 
 const User = () => {
@@ -25,6 +26,9 @@ const User = () => {
             </Grid>
             <Grid item>
                 <PaymentMEthodsInfo/>
+            </Grid>
+            <Grid item>
+                <FixedItems />
             </Grid>
         </Grid>
     )
