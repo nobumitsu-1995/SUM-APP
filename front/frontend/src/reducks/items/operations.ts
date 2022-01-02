@@ -113,7 +113,6 @@ export const updateItem = (user_id: string, item: itemState) => {
 export const createItems = (user_id: string, items: itemState[]) => {
     return (dispatch: any) => {
         if (!isValidRequiredInput(items)) {
-            console.log("false")
             alert("必須項目(分類、収支内容、値段、収支発生日、支払方法)を全て入力してください。")
             return false;
         }

@@ -16,7 +16,7 @@ export const getFixedCosts = (user_id?: string) => {
 export const createFixedCost = (user_id: string, fixed_cost: fixedCostState) => {
     return async (dispatch: any) => {
         await client.post(`/${user_id}/fixed_costs`, {
-            fixed_item: {
+            fixed_cost: {
                 scheduled_date: fixed_cost.scheduled_date,
                 category_id: fixed_cost.category_id,
                 name: fixed_cost.name,
@@ -45,14 +45,16 @@ export const deleteFixedCost = (user_id: string, fixed_cost_id: number) => {
             dispatch(deleteFixedCostAction(nextFixedCosts));
             dispatch(push('/items'));
         })
-        
+        .catch(e => {
+            alert("必要事項を入力してください");
+        });
     }
 }
 
 export const updateFixedCost = (user_id: string, fixed_cost: fixedCostState) => {
     return async (dispatch: any, getState: () => StateFromReducersMapObject<ReducersMapObject<any, any>>) => {
         await client.patch(`/${user_id}/fixed_costs/${fixed_cost.id}`, {
-            fixed_item: {
+            fixed_cost: {
                 scheduled_date: fixed_cost.scheduled_date,
                 category_id: fixed_cost.category_id,
                 name: fixed_cost.name,
@@ -63,8 +65,8 @@ export const updateFixedCost = (user_id: string, fixed_cost: fixedCostState) => 
             }
         })
         .then(resp => {
-            const prevFixedCosts = getState().items
-            const nextFixedCosts = prevFixedCosts.filter((prevItem: fixedCostState) => prevItem.id !== fixed_cost.id)
+            const prevFixedCosts = getState().fixed_costs
+            const nextFixedCosts = prevFixedCosts.filter((prevFixedCost: fixedCostState) => prevFixedCost.id !== fixed_cost.id)
             nextFixedCosts.push(resp.data)
             dispatch(updateFixedCostAction(nextFixedCosts));
             dispatch(push('/items'));

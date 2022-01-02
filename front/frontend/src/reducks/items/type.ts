@@ -1,6 +1,7 @@
 export type itemState = {
     id: number;
     date: string;
+    scheduled_date?: undefined;
     category_id : number;
     category: {id: number, big_category: string, name: string};
     payment_method_id: number;

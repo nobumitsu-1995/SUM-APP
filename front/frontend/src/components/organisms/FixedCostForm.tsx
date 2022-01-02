@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFixedCostList, getIncomeList, getVariableCostList } from "../../reducks/categories/selectors";
 import { categoryState } from "../../reducks/categories/type";
-import { createItem, updateItem } from "../../reducks/items/operations";
-import { itemState } from "../../reducks/items/type";
+import { createFixedCost, updateFixedCost } from "../../reducks/fixedItems/operations";
+import { fixedCostState } from "../../reducks/fixedItems/type";
 import { getExpensesList, getIncomeList as getPMIncomeList } from "../../reducks/paymentMethods/selectors";
 import { PaymentMethodState } from "../../reducks/paymentMethods/type";
 import { initialState } from "../../reducks/store/initialState";
@@ -15,10 +15,10 @@ import { Card, SelectForm } from "../molecules";
 
 type Props = {
     formType: "edit" | "create";
-    item: itemState;
+    item: fixedCostState;
 }
 
-const ItemForm: React.FC<Props> = props => {
+const FixedCostForm: React.FC<Props> = props => {
     const dispatch = useDispatch();
     const selector = useSelector(state => state);
     const uid = getUserId(selector);
@@ -28,13 +28,14 @@ const ItemForm: React.FC<Props> = props => {
         { value: "variable_cost", name: "変動費" },
         { value: "income", name: "収入" }
     ];
-    const [currentItem, setCurrentItem] = useState(initialState.items);
+    const [currentFixedCost, setCurrentFixedCost] = useState(initialState.fixed_costs);
     const [categories, setCategories] = useState(default_message);
     const [paymentMethods, setPaymentMethods] = useState(default_message);
+    const [disabled, setDisabled] = useState(false);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
-        setCurrentItem({...currentItem, [name]: value});
+        setCurrentFixedCost({...currentFixedCost, [name]: value});
     }
 
     const moldingArray = (array: categoryState[] | PaymentMethodState[]) => {
@@ -74,10 +75,10 @@ const ItemForm: React.FC<Props> = props => {
     const onClickFunc = () => {
         switch (props.formType) {
             case "create":
-                dispatch(createItem(uid, currentItem));
+                dispatch(createFixedCost(uid, currentFixedCost));
             break;
             case "edit":
-                dispatch(updateItem(uid, currentItem));
+                dispatch(updateFixedCost(uid, currentFixedCost));
             break;
         }
     }
@@ -85,7 +86,7 @@ const ItemForm: React.FC<Props> = props => {
     useEffect(() => {
         if (props.formType === "edit") {
             judgeFormDatas(props.item.category.big_category)
-            setCurrentItem(props.item)
+            setCurrentFixedCost(props.item)
         }
     }, [])
 
@@ -98,14 +99,14 @@ const ItemForm: React.FC<Props> = props => {
                         <>
                             <Typography color="textSecondary">
                                 {props.formType === "create" && <SelectForm name={"big_category"} label={"大分類"} datas={big_categories} disabled={null} onChange={changeFormDatas} />}
-                                <SelectForm value={currentItem.category_id} name={"category_id"} label={"小分類"} datas={categories} disabled={null} onChange={handleInputChange} />
+                                <SelectForm value={currentFixedCost.category_id} name={"category_id"} label={"小分類"} datas={categories} disabled={null} onChange={handleInputChange} />
                             </Typography>
                             <Typography variant="h5" component="h2">
-                                <Input name={"name"} label={"収支内容"} value={currentItem.name} type={"string"} onChange={handleInputChange}/>
-                                <Input name={"price"} label={"値段"} value={currentItem.price} placeholder={"¥"} type={"number"} onChange={handleInputChange}/>
+                                <Input name={"name"} label={"収支内容"} value={currentFixedCost.name} type={"string"} onChange={handleInputChange}/>
+                                <Input name={"price"} label={"値段"} value={currentFixedCost.price} placeholder={"¥"} type={"number"} onChange={handleInputChange}/>
                             </Typography>
                             <Typography align="right" color="textSecondary">
-                                <Input name={"date"} label={"収支発生日"} value={currentItem.date} type={"date"} onChange={handleInputChange} />
+                                <Input name={"scheduled_date"} label={"収支発生日"} value={currentFixedCost.scheduled_date} type={"number"} onChange={handleInputChange} />
                             </Typography>
                         </>
                     </Card>
@@ -114,7 +115,7 @@ const ItemForm: React.FC<Props> = props => {
                     <Card color={"gold"} title={"支払方法"}>
                         <MonetizationOn/>
                         <Typography>
-                            <SelectForm value={currentItem.payment_method_id} name={"payment_method_id"} label={"支払方法"} datas={paymentMethods} disabled={"disabled"} onChange={handleInputChange} />
+                            <SelectForm value={currentFixedCost.payment_method_id} name={"payment_method_id"} label={"支払方法"} datas={paymentMethods} disabled={"disabled"} onChange={handleInputChange} />
                         </Typography>
                     </Card>
                 </div>
@@ -126,7 +127,7 @@ const ItemForm: React.FC<Props> = props => {
                             label="備考"
                             multiline
                             rows={4}
-                            defaultValue={currentItem.note}
+                            defaultValue={currentFixedCost.note}
                             variant="outlined"
                             onChange={handleInputChange}
                             fullWidth
@@ -139,7 +140,9 @@ const ItemForm: React.FC<Props> = props => {
                         variant="contained"
                         size="medium"
                         fullWidth={true}
+                        disabled={disabled}
                         onClick={() => {
+                            setDisabled(true)
                             onClickFunc();
                         }}
                     >
@@ -150,4 +153,4 @@ const ItemForm: React.FC<Props> = props => {
     );
 }
 
-export default ItemForm;
+export default FixedCostForm;

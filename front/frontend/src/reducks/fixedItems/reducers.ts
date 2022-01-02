@@ -10,7 +10,7 @@ export const FixedItemsReducer = (state = [{...initialState.fixed_costs}], actio
             ]
         case Actions.UPDATE_FIXED_COST:
             return [
-                ...state, ...action.payload
+                ...action.payload
             ]
         case Actions.DELETE_FIXED_COST:
             return [

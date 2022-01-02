@@ -54,7 +54,7 @@ export const initialState = {
     },
     fixed_costs: {
         id: 0,
-        scheduled_date: "",
+        scheduled_date: 0,
         category_id: 0,
         name: "",
         price: 0,

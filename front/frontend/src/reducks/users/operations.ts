@@ -5,6 +5,7 @@ import { getItems } from "../items/operations";
 import { getCategories } from "../categories/operations";
 import { getPaymentMethods } from "../paymentMethods/operations";
 import { getMoneyInfo } from "../moneyInfos/operations";
+import { getFixedCosts } from "../fixedItems/operations";
 
 export const signIn = (user?: User) => {
     return async (dispatch: any) => {
@@ -19,6 +20,7 @@ export const signIn = (user?: User) => {
         dispatch(getCategories(user?.sub))
         dispatch(getPaymentMethods(user?.sub))
         dispatch(getMoneyInfo(user?.sub))
+        dispatch(getFixedCosts(user?.sub))
         dispatch(push('/items'))
     }
 }

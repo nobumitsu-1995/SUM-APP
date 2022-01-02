@@ -11,6 +11,7 @@ import { ItemsReducer } from "../items/reducers";
 import { CategoriesReducer } from "../categories/reducers";
 import { PaymentMethodsReducer } from "../paymentMethods/reducers";
 import { MoneyInfoReducer } from "../moneyInfos/reducers";
+import { FixedItemsReducer } from "../fixedItems/reducers";
 
 export default function createStore(history: H.History) {
     const middleWares = [routerMiddleware(history), thunk];
@@ -21,7 +22,8 @@ export default function createStore(history: H.History) {
             items: ItemsReducer,
             categories: CategoriesReducer,
             payment_methods: PaymentMethodsReducer,
-            money_info: MoneyInfoReducer
+            money_info: MoneyInfoReducer,
+            fixed_costs: FixedItemsReducer
         }),
         applyMiddleware(
             ...middleWares

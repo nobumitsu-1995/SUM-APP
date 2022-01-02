@@ -1,5 +1,6 @@
 export type fixedCostState = {
     id: number;
+    date?: undefined; 
     scheduled_date: number;
     category_id : number;
     category: {id: number, big_category: string, name: string};
