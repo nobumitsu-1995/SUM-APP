@@ -1,12 +1,13 @@
 import { Typography } from "@material-ui/core";
 import { AttachFile, Comment, MonetizationOn } from "@mui/icons-material";
+import { fixedCostState } from "../../reducks/fixedItems/type";
 import { translateBigCategory } from "../../reducks/items/operations";
 import { itemState } from "../../reducks/items/type";
 import Card from "../molecules/Card";
 import Modal from "../molecules/Modal";
 
 type Props = {
-    item: itemState;
+    item: itemState | fixedCostState;
 }
 
 const ShowItem: React.FC<Props> = (props) => {
@@ -25,7 +26,7 @@ const ShowItem: React.FC<Props> = (props) => {
                                 {props.item.name} ： ￥{props.item.price}
                             </Typography>
                             <Typography align="right" color="textSecondary">
-                                {props.item.date}
+                                {props.item.date ? props.item.date : props.item.scheduled_date}
                             </Typography>
                         </>
                     </Card>

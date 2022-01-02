@@ -9,7 +9,7 @@ class FixedCostsController < ApplicationController
     def create
         fixed_cost = FixedCost.new(fixed_cost_params)
         if fixed_cost.save!
-            render json: fixed_cost, status: 201
+            render json: fixed_cost.as_json(include: [:category, :payment_method]), status: 201
         else
             render json: fixed_cost.errors, status: 401
         end
@@ -22,7 +22,7 @@ class FixedCostsController < ApplicationController
     
     def update
         if @fixed_cost.update!(fixed_cost_params)
-            render json: @fixed_cost, status: 202
+            render json: @fixed_cost.as_json(include: [:category, :payment_method]), status: 202
         else
             render json: @fixed_cost.errors, status: 401
         end

@@ -51,5 +51,17 @@ export const initialState = {
         user_id: "",
         category: {id: 0, name: "", big_category: ""},
         payment_method: {id: 0, name: "", income: false}
+    },
+    fixed_costs: {
+        id: 0,
+        scheduled_date: 0,
+        category_id: 0,
+        name: "",
+        price: 0,
+        payment_method_id: 0,
+        note: "",
+        user_id: "",
+        category: {id: 0, name: "", big_category: ""},
+        payment_method: {id: 0, name: "", income: false}
     }
 }

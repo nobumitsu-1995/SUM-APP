@@ -1,7 +1,7 @@
-export type itemState = {
+export type fixedCostState = {
     id: number;
-    date: string;
-    scheduled_date?: undefined;
+    date?: undefined; 
+    scheduled_date: number;
     category_id : number;
     category: {id: number, big_category: string, name: string};
     payment_method_id: number;
@@ -12,7 +12,7 @@ export type itemState = {
     user_id: string;
 };
 
-export type itemAction = {
+export type fixedCostAction = {
     type: string;
-    payload: itemState[];
+    payload: fixedCostState[];
 }
